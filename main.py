@@ -160,15 +160,15 @@ if __name__ == "__main__":
 # DONATIONS
 
 
-# test key that always works stripe.api_key = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
+# test key that always works stripe.api_key = "YOURAPIKEY"
 # test keys
 # stripe_keys = {
-#   'secret_key': 'sk_test_ed0B4aQsME4lNsYNLcYfZqvf',
-#   'publishable_key': 'pk_test_dIbqjYQc6jNf4liybDfx2sPM'
+#   'secret_key': 'YOURAPIKEY',
+#   'publishable_key': 'YOURAPIKEY'
 # }
 # stripe_keys = {
-#   'secret_key': 'sk_live_plNwBQvO6KfuYy5uXZc1bJrb',
-#   'publishable_key': 'pk_live_F8y140INbOoO11xznX0c4sjX'
+#   'secret_key': 'YOURAPIKEY',
+#   'publishable_key': 'YOURAPIKEY'
 # }
 
 
