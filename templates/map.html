@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Hawaiʻi Names</title>
+    <!-- Bootstrap -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- enables us to access URL as $SCRIPT_ROOT -->
+    <script type=text/javascript>$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
+
+
+        <style type="text/css">
+
+            body, html {
+                height: 100%;
+                margin:0;
+            }
+
+            /* Set a size for our map container, the Google Map will take up 100% of this container */
+            #map {
+                height: 100%;
+            }
+
+            #cta {
+              position: absolute;
+              top: 5%;
+              left: 5%;
+            }
+
+            #logo{
+              height:100%;
+            }
+
+            #myModal{
+              font-size: 0.9em ;
+            }
+
+            .current-nav {
+              text-decoration: underline;
+            }
+
+            .navbar{
+              background-color: #deeed8;
+              color:#466031;
+            -webkit-box-shadow: 0 8px 6px -6px #999;
+            -moz-box-shadow: 0 8px 6px -6px #999;
+             box-shadow: 0 8px 6px -6px #999;
+
+            }
+
+
+
+        </style>
+        
+        <!-- 
+            You need to include this script tag on any page that has a Google Map.
+
+            The following script tag will work when opening this example locally on your computer.-->
+                    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script><!--
+
+            But if you use this on a localhost server or a live website you will need to include an API key. 
+            Sign up for one here (it's free for small usage): 
+                https://developers.google.com/maps/documentation/javascript/tutorial#api_key
+
+            After you sign up, use the following script tag with YOUR_GOOGLE_API_KEY replaced with your actual key.
+               <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqHdJXSRk3fbl6uMN2d1mbQoqv8ysSqqQ"></script>
+
+
+  <!-- ****** faviconit.com favicons ****** -->
+  <link rel="shortcut icon" href="../static/favicon/favicon.ico">
+  <link rel="icon" sizes="16x16 32x32 64x64" href="../static/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="196x196" href="../static/favicon/favicon-192.png">
+  <link rel="icon" type="image/png" sizes="160x160" href="../static/favicon/favicon-160.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../static/favicon/favicon-96.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="../static/favicon/favicon-64.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon/favicon-16.png">
+  <link rel="apple-touch-icon" href="../static/favicon/favicon-57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="../static/favicon/favicon-114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="../static/favicon/favicon-72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="../static/favicon/favicon-144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="../static/favicon/favicon-60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="../static/favicon/favicon-120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../static/favicon/favicon-76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="../static/favicon/favicon-152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon/favicon-180.png">
+  <meta name="msapplication-TileColor" content="#FFFFFF">
+  <meta name="msapplication-TileImage" content="../static/favicon/favicon-144.png">
+  <meta name="msapplication-config" content="../static/favicon/browserconfig.xml">
+  <!-- ****** faviconit.com favicons ****** -->
+
+
+        
+        <script type="text/javascript">
+            // When the window has finished loading create our google map below
+            google.maps.event.addDomListener(window, 'load', init);
+        
+            function init() {
+                // Basic options for a simple Google Map
+                // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+                var mapOptions = {
+                    // How zoomed in you want the map to start at (always required)
+                    zoom: 10,
+                    
+                    // Disables the street view control and the map type (sattelite vs map) control
+                    mapTypeControl:false,
+                    streetViewControl: false,
+
+                    // The latitude and longitude to center the map (always required)
+                    center: new google.maps.LatLng(21.6, -158.0), // Kahuku, Hawaii
+
+                  //choose your style over here: https://mapstyle.withgoogle.com/
+                      styles: [
+  {
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.neighborhood",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "visibility": "simplified"
+      },
+      {
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#ffffff"
+      },
+      {
+        "visibility": "simplified"
+      },
+      {
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#ffffff"
+      },
+      {
+        "visibility": "simplified"
+      },
+      {
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#ffffff"
+      },
+      {
+        "visibility": "simplified"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#ffffff"
+      },
+      {
+        "visibility": "simplified"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#ffffff"
+      },
+      {
+        "visibility": "simplified"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  }
+]
+                };
+
+// Get the HTML DOM element that will contain your map 
+// We are using a div with id="map" seen below in the <body>
+var mapElement = document.getElementById('map');
+
+// Create the Google Map using our element and options defined above
+var map = new google.maps.Map(mapElement, mapOptions);
+
+
+
+//AJAX function that gets the locations from the server
+//using Jquery
+//as a callback, launches the createMarkers function which creates markers based on the server data
+
+
+var myLocations2=[];
+var count = 0;
+$(function() {
+
+var isshow = localStorage.getItem('isshow');
+
+
+
+var get_locations = function() {
+var myURL=$SCRIPT_ROOT + '/json';
+var dict={};
+      $.ajax({
+        type: "POST",
+        url: myURL,
+        data: dict,
+
+      success: function(data) {
+      myLocations2 = data;
+      count++;
+        //checks that we do have some values
+      if (myLocations2.length<2  &&  count<=3) {get_locations();}
+        //creates the markers
+      for (var i = 0; i < myLocations2.length; i++) {createMarkers (i); showHideMarkers();}
+        //hides the modal for next page view
+          if (isshow== null) {localStorage.setItem('isshow', 1);$('#myModal').modal('show');} 
+      },
+
+  error: function(XMLHttpRequest, textStatus, errorThrown) {
+     location.reload();}
+});
+}
+get_locations();
+});
+
+
+
+var myLocationsMarkers=[];
+var myIcon = "../static/blankSmTsp.png"
+
+// creates markers based on the server data
+function createMarkers (index) {
+ 
+// finds the right formatting based on type
+var markerStyle = {};
+switch (myLocations2[index]["type"])
+{
+   case "country": markerStyle ={'minZoom':2,'maxZoom':4,'nameFont':'20px','explanationFont':'12px'};
+       break;
+   case "state": markerStyle ={'minZoom':5,'maxZoom':7,'nameFont':'20px','explanationFont':'12px'};
+       break;
+   case "county":markerStyle={'minZoom':8,'maxZoom':9,'nameFont':'18px','explanationFont':'10px'};
+       break;
+   case "city":markerStyle= {'minZoom':10,'maxZoom':11,'nameFont':'18px','explanationFont':'10px'};
+       break;
+   case "town/neighborhood": markerStyle = {'minZoom':12,'maxZoom':15,'nameFont':'18px','explanationFont':'10px'};
+       break;
+   case "place of interest": markerStyle = {'minZoom':14,'maxZoom':15,'nameFont':'16px','explanationFont':'10px'};
+       break;
+   case "street": markerStyle = {'minZoom':16,'maxZoom':20,'nameFont':'16px','explanationFont':'10px'};
+       break;
+   default: markerStyle= {'minZoom':13,'maxZoom':15,'nameFont':'16px','explanationFont':'10px'};
+}
+
+
+  var locationName = new google.maps.Marker({
+                position: new google.maps.LatLng(myLocations2[index]["lat"], myLocations2[index]["lng"]),
+                map: map,
+                label: { text: myLocations2[index]["locationName"],fontSize:markerStyle["nameFont"],fontFamily:'Roboto',fontWeight:'light', color: '#004D40' },
+                icon: {url: myIcon, labelOrigin: new google.maps.Point(16, 0)},
+                minZoom:markerStyle["minZoom"],
+                maxZoom:markerStyle["maxZoom"],
+                cursor: "../static/openhand_8_8.cur"
+                });
+  myLocationsMarkers.push(locationName);
+  
+  var locationExplained = new google.maps.Marker({
+                position: new google.maps.LatLng(myLocations2[index]["lat"], myLocations2[index]["lng"]),
+                map: map,
+                label: { text: myLocations2[index]["locationExplained"],fontSize:markerStyle["explanationFont"],fontFamily:'Roboto',fontWeight:'light', color: '#004D40' },
+                icon: {url: myIcon, labelOrigin: new google.maps.Point(16, 20)},
+                minZoom:markerStyle["minZoom"],
+                maxZoom:markerStyle["maxZoom"],
+                cursor: "../static/openhand_8_8.cur"
+                });
+
+  myLocationsMarkers.push(locationExplained);
+
+};
+
+
+
+
+function showHideMarkers () {
+var zoom = map.getZoom();
+for (var j = 0; j < myLocationsMarkers.length; j++) { 
+    if( zoom < myLocationsMarkers[j]['minZoom'] || zoom > myLocationsMarkers[j]['maxZoom']) {
+      myLocationsMarkers[j].setMap(null);
+    }
+    else {
+       myLocationsMarkers[j].setMap(map);     
+    }
+}
+}
+
+google.maps.event.addListener(map, 'zoom_changed', function() {
+  showHideMarkers();
+});
+
+
+
+
+
+
+
+            }
+
+
+
+
+
+
+        </script>
+    </head>
+    <body>
+
+
+ <!--Modal - should be at the top of the html -->
+<div class="modal bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">E komo mai!</h4>
+      </div>
+      <div class="modal-body">
+We are a free, user-generated map of place names. Zoom to discover the names of cities, towns, valleys, and surfing spots...<br/><br/>
+Add or correct entries in edit mode!<br/><br/>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Start exploring</button>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+ <!--Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"><img id="logo" alt="" src="../static/icon.png"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="current-nav"><a href="/">Map </a></li>
+        <li ><a href="/analysis">Analysis </a></li>
+        <li><a href="/editMap">Edit</a></li>
+        <li  ><a href="/about">About</a></li><!--
+        <li ><a href="/donate">donate</a></li>-->
+      </ul>
+</div>
+  </div>
+</nav>
+
+
+
+
+<!-- The element that will contain our Google Map. This is used in both the Javascript and CSS above. -->
+<div id="map"></div>
+
+
+    </body>
+</html>

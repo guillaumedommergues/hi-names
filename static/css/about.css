@@ -1,0 +1,60 @@
+body, html {
+	height: 100%;
+	margin:0;
+}
+
+#logo{
+  height:100%;
+}
+
+.current-nav {
+  text-decoration: underline;
+}
+
+.navbar{
+	background-color: #deeed8;
+	color:#466031;
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+}
+
+
+h3 {
+	color: #297BBB;
+}
+
+span {
+		font-weight: bold;
+}
+
+.buffer { 
+	margin-top:20px;
+}
+
+
+.main-screen{
+	min-height: 100vh;
+	padding:0% 3% 10% 3%;
+/*	font-family: 'Roboto', sans-serif;*/
+	font-size: 0.7em ;
+
+}
+
+
+@media(min-width:760px){
+.main-screen{
+	padding:0% 20% 10% 20%;
+	font-size: 0.8em;
+}
+
+.buffer { 
+	margin-top:20px;
+}
+
+}
+
+
+
+
+

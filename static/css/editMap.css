@@ -1,0 +1,71 @@
+body, html {
+    height: 100%;
+    margin:0;
+}
+
+/* Set a size for our map container, the Google Map will take up 100% of this container */
+#map {
+    height: 70%;
+}
+
+.buffer { 
+  margin-top:15px;
+}
+
+.navbar{
+  background-color: #deeed8;
+  color:#466031;
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+}
+
+
+h3 {
+  color: #297BBB;
+}
+
+select, input, p, h1, button, span,label {
+/*	font-family: 'Roboto', sans-serif;
+	font-weight: lighter;
+*/  font-size: 0.7em ;
+
+}
+
+
+@media(min-width:760px){
+select, input, p, h1, button, span,label {
+  font-size: 0.8em;
+}
+}
+
+
+
+
+
+
+
+
+
+
+.btn {
+	width: 100%;
+}
+
+.buffer { 
+	margin-top:20px;
+}
+
+#cta {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+
+#logo{
+  height:100%;
+}
+
+.current-nav {
+  text-decoration: underline;
+}
