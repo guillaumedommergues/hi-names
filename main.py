@@ -1,8 +1,5 @@
-#!/usr/bin/python
-# encoding: utf-8
 from flask import  render_template, json, jsonify,request,Response, Flask
 from google.cloud import datastore
-#import stripe
 
 myLocations = [
 {"lat":22.19302, "lng":-156.880043, "locationName":' Hawai\'i', "locationExplained":'from Hawai\'iloa, discoverer of the Islands',"type":'state',"link":''},
