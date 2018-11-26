@@ -15,21 +15,9 @@ myLocations = [
 {"lat":21.313, "lng":-157.835, "locationName":' Makiki', "locationExplained":'Hawaiian for "cool, refreshing"',"type":'valley',"link":''}
 ]
 
-
 app = Flask(__name__)
 
-
-
-
-
-
-
-
 datastore_client = datastore.Client('hi-names')
-
-#datastore_client = datastore.Client('gdtestflaskapp')
-
-
 
 @app.route('/')
 def homepage():
@@ -49,7 +37,6 @@ def editMap():
 @app.route('/analysis')
 def analysis():
 	return render_template('analysis.html')
-
 
 query = datastore_client.query(kind='Location')
 @app.route('/json',methods=['POST'])
@@ -73,10 +60,6 @@ def getCalls():
 	print(result)
 	return Response(json.dumps(result), mimetype='/json')
 
-
-
-
-
 # LOCATION EDITING
 
 @app.route('/jsonNewLocation',methods=['GET','POST'])
@@ -91,8 +74,6 @@ def addNewLocation():
 
 	datastore_client.put(myNewLocation)
 	return jsonify(**myNewLocation)
-
-
 
 @app.route('/jsonEditLocation',methods=['GET','POST'])
 def editOneLocation():
@@ -109,7 +90,6 @@ def editOneLocation():
 	datastore_client.put(myNewLocation)
 	return jsonify(**dummyDictionary)
 
-
 @app.route('/jsonRemoveOneLocation',methods=['GET','POST'])
 def RemoveOneLocation():
 	dummyDictionary={}
@@ -118,21 +98,11 @@ def RemoveOneLocation():
 	datastore_client.delete(key)
 	return jsonify(**dummyDictionary)
 
-
-
-
-
-
-
-
-
 # ADMINISTRATION
-
 
 @app.route('/removelocation')
 def removeLocation():
 	return render_template('removelocation.html')
-
 
 @app.route('/jsonRemoveLocation',methods=['GET','POST'])
 def removeOldLocation():
@@ -145,10 +115,7 @@ def removeOldLocation():
 			datastore_client.delete(key)
 	except:
 		print("error")
-
-
 	return jsonify(**myNewLocation)
-
 
 
 if __name__ == "__main__":
